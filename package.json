@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Run Git-Up on my directory",
   "main": "app.js",
-  "scripts": {
-    "test": "repoupdate"
+  "bin": {
+    "repoupdate": "app.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bossxl/gitupmyproject/issues"
+  },
+  "dependencies": {
+    "qcnode": "1.5.1"
   }
 }

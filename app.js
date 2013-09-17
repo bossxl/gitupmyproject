@@ -1,14 +1,16 @@
+#! /usr/bin/env node
 var fs = require("fs");
 var spawn = require('child_process').spawn,
 runningChildren = 0;
 var excludeDirs = [];
+var cwd = process.cwd();
 loadConfig();
-fs.readdir(__dirname,function(err,files){
+fs.readdir(__dirncwdame,function(err,files){
 	files.forEach(function(fileName){
     if(excludeDirs.indexOf(fileName) === -1){
-  		fs.stat(__dirname + "/" + fileName, function(err, stat){
+  		fs.stat(cwd + "/" + fileName, function(err, stat){
   			if(stat.isDirectory()){
-  				gitUp(__dirname + "/" + fileName);
+  				gitUp(cwd + "/" + fileName);
   			}
   		});
     }
@@ -16,7 +18,7 @@ fs.readdir(__dirname,function(err,files){
 });
 function loadConfig(){
   try {
-    var config = JSON.parse(fs.readFileSync(__dirname + "/repo.conf.json"));
+    var config = JSON.parse(fs.readFileSync("~/repo.conf.json"));
       excludeDirs = excludeDirs.concat(config.excludeDirs);
       console.log("Exclude the following directories:\n" , excludeDirs.join(", "));
   } catch (e){
