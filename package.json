@@ -1,0 +1,22 @@
+{
+  "name": "gitupmyproject",
+  "version": "0.0.1",
+  "description": "Run Git-Up on my directory",
+  "main": "app.js",
+  "scripts": {
+    "test": "repoupdate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bossxl/gitupmyproject.git"
+  },
+  "keywords": [
+    "git-up",
+    "git"
+  ],
+  "author": "Paul Boss",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bossxl/gitupmyproject/issues"
+  }
+}
