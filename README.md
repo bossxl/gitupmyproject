@@ -12,11 +12,11 @@ This works on Mac OSX. I haven't tired it on windows and don't plan to. Mostly l
 Any ideas that you want, add as an issue. Will consider anything and everything since this is so barebones
 
 ## Change log:
-* 0.0.1
-** Inital Commit 
-** Run from any directory
-** Pull config from home (default)
-** Pull config from cwd
+### 0.0.1
+* Inital Commit 
+* Run from any directory
+* Pull config from home (default)
+* Pull config from cwd
 
 
 ## TODO: 
