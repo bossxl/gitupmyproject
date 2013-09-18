@@ -18,8 +18,5 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bossxl/gitupmyproject/issues"
-  },
-  "dependencies": {
-    "qcnode": "1.5.1"
   }
 }

@@ -1,11 +1,12 @@
 #! /usr/bin/env node
 var fs = require("fs");
+var path = require("path");
 var spawn = require('child_process').spawn,
 runningChildren = 0;
 var excludeDirs = [];
 var cwd = process.cwd();
 loadConfig();
-fs.readdir(__dirncwdame,function(err,files){
+fs.readdir(cwd,function(err,files){
 	files.forEach(function(fileName){
     if(excludeDirs.indexOf(fileName) === -1){
   		fs.stat(cwd + "/" + fileName, function(err, stat){
@@ -18,12 +19,25 @@ fs.readdir(__dirncwdame,function(err,files){
 });
 function loadConfig(){
   try {
-    var config = JSON.parse(fs.readFileSync("~/repo.conf.json"));
-      excludeDirs = excludeDirs.concat(config.excludeDirs);
-      console.log("Exclude the following directories:\n" , excludeDirs.join(", "));
+    var config = JSON.parse(fs.readFileSync(path.normalize(process.env.HOME + "/repo.conf.json")));
+    excludeDirs = excludeDirs.concat(config.excludeDirs);
+    console.log("Exclude the following directories:\n" , excludeDirs.join(", "));
+    return;
   } catch (e){
-    console.log("Could not load config");
+    console.log("- Could not load config from home");
   }
+  try {
+    var config = JSON.parse(fs.readFileSync(path.normalize(process.cwd() + "/repo.conf.json")));
+    excludeDirs = excludeDirs.concat(config.excludeDirs);
+    console.log("Exclude the following directories:\n" , excludeDirs.join(", "));
+    return;
+  } catch (e){
+    console.log("- Could not load config from " + process.cwd());
+    console.log("- Please create a file called repo.conf.json either here OR in home");
+    console.log("- It should look like:");
+    console.log(JSON.stringify({ excludeDirs : [ "somefoldername"]}, undefined, 2));
+  }
+
 }
 function gitUp(dirname){
 	runningChildren++;
